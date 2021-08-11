@@ -1,3 +1,4 @@
+from carbonserver.api.services.authentication.authentication_service import auth
 from typing import List
 from uuid import UUID
 
@@ -6,14 +7,13 @@ from dependency_injector.wiring import Provide, inject
 from fastapi import APIRouter, Depends
 from starlette import status
 
-from carbonserver.api.dependencies import get_token_header
 from carbonserver.api.schemas import Experiment, ExperimentCreate
 from carbonserver.api.services.experiments_service import ExperimentService
 
 EXPERIMENTS_ROUTER_TAGS = ["Experiments"]
 
 router = APIRouter(
-    dependencies=[Depends(get_token_header)],
+    dependencies=[Depends(auth)],
 )
 
 
