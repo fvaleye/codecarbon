@@ -7,14 +7,11 @@ from fastapi import APIRouter, Depends
 from starlette import status
 
 from carbonserver.api.schemas import Experiment, ExperimentCreate
-from carbonserver.api.services.authentication.authentication_service import auth
 from carbonserver.api.services.experiments_service import ExperimentService
 
 EXPERIMENTS_ROUTER_TAGS = ["Experiments"]
 
-router = APIRouter(
-    dependencies=[Depends(auth)],
-)
+router = APIRouter()
 
 
 @router.post(
